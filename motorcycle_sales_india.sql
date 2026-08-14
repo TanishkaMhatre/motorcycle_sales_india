@@ -1,0 +1,153 @@
+CREATE DATABASE motorcycle_sales_india;
+
+USE motorcycle_sales_india;
+
+
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_line VARCHAR(50) NOT NULL,
+    product_name VARCHAR(100) NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE warehouses (
+    warehouse_id INT PRIMARY KEY,
+    warehouse_name VARCHAR(50) NOT NULL,
+    state VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE payment_methods (
+    payment_id INT PRIMARY KEY,
+    payment_method VARCHAR(50) NOT NULL,
+    fee_rate DECIMAL(5,3) NOT NULL
+);
+
+CREATE TABLE sales (
+    sale_id INT PRIMARY KEY,
+    sale_date DATE NOT NULL,
+    product_id INT NOT NULL,
+    warehouse_id INT NOT NULL,
+    payment_id INT,
+    sales_channel ENUM('Wholesale','Retail') NOT NULL,
+    quantity INT NOT NULL,
+    discount_rate DECIMAL(5,2) NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    FOREIGN KEY (warehouse_id) REFERENCES warehouses(warehouse_id),
+    FOREIGN KEY (payment_id) REFERENCES payment_methods(payment_id)
+);
+
+INSERT INTO products (product_id, product_line, product_name, unit_price) VALUES
+(1, 'Engine Parts', 'Brake Pad', 850),
+(2, 'Engine Parts', 'Clutch Plate', 3200),
+(3, 'Electrical', 'LED Headlight', 1800),
+(4, 'Electrical', 'Battery', 4200),
+(5, 'Accessories', 'Crash Guard', 2500),
+(6, 'Accessories', 'Riding Gloves', 1400),
+(7, 'Accessories', 'Mobile Holder', 750),
+(8, 'Body Parts', 'Side Panel', 3600),
+(9, 'Body Parts', 'Rear View Mirror', 950),
+(10, 'Maintenance', 'Air Filter', 650);
+
+INSERT INTO warehouses (warehouse_id, warehouse_name, state) VALUES
+(1, 'Mumbai', 'Maharashtra'),
+(2, 'Pune', 'Maharashtra'),
+(3, 'Nashik', 'Maharashtra'),
+(4, 'Ahmedabad', 'Gujarat');
+
+INSERT INTO payment_methods (payment_id, payment_method, fee_rate) VALUES
+(1, 'Credit Card', 0.02),
+(2, 'UPI', 0.005),
+(3, 'Cash', 0.0),
+(4, 'Bank Transfer', 0.01);
+
+INSERT INTO sales (sale_id, sale_date, product_id, warehouse_id, payment_id, sales_channel, quantity, discount_rate) VALUES
+(1, '2025-11-24', 2, 1, 3, 'Wholesale', 5, 0.12),
+(2, '2025-02-22', 9, 1, 4, 'Wholesale', 3, 0.02),
+(3, '2025-04-30', 9, 1, 2, 'Retail', 7, 0.02),
+(4, '2025-08-18', 10, 3, 1, 'Retail', 3, 0.12),
+(5, '2025-08-05', 6, 3, 2, 'Wholesale', 25, 0.05),
+(6, '2025-02-22', 2, 4, 1, 'Wholesale', 12, 0.1),
+(7, '2025-05-16', 1, 4, 1, 'Retail', 7, 0.0),
+(8, '2025-10-10', 5, 3, 2, 'Retail', 1, 0.12),
+(9, '2025-04-27', 5, 1, 2, 'Retail', 7, 0.05),
+(10, '2025-08-21', 6, 2, 3, 'Wholesale', 22, 0.05),
+(11, '2025-12-26', 2, 2, 2, 'Wholesale', 13, 0.05),
+(12, '2025-11-24', 9, 2, 3, 'Retail', 1, 0.02),
+(13, '2025-01-17', 6, 4, 3, 'Wholesale', 19, 0.12),
+(14, '2025-06-11', 4, 4, 4, 'Retail', 8, 0.02),
+(15, '2025-05-16', 3, 2, 3, 'Retail', 7, 0.1),
+(16, '2025-07-24', 6, 2, 2, 'Wholesale', 3, 0.0),
+(17, '2025-02-26', 3, 2, 4, 'Retail', 7, 0.08),
+(18, '2025-11-02', 8, 3, 1, 'Retail', 2, 0.12),
+(19, '2025-10-02', 5, 3, 1, 'Wholesale', 6, 0.08),
+(20, '2025-01-02', 5, 2, 1, 'Retail', 5, 0.12),
+(21, '2025-09-17', 10, 2, 2, 'Wholesale', 6, 0.1),
+(22, '2025-09-29', 1, 3, 4, 'Wholesale', 12, 0.05),
+(23, '2025-05-03', 1, 2, 1, 'Wholesale', 16, 0.0),
+(24, '2025-09-30', 3, 2, 4, 'Retail', 3, 0.05),
+(25, '2025-09-28', 10, 4, 2, 'Retail', 4, 0.12),
+(26, '2025-06-09', 7, 3, 4, 'Retail', 8, 0.0),
+(27, '2025-05-07', 4, 1, 3, 'Wholesale', 18, 0.02),
+(28, '2025-10-29', 4, 1, 1, 'Retail', 1, 0.02),
+(29, '2025-02-04', 1, 3, 1, 'Wholesale', 9, 0.12),
+(30, '2025-09-06', 4, 2, 4, 'Wholesale', 16, 0.08),
+(31, '2025-04-08', 2, 1, 4, 'Wholesale', 14, 0.08),
+(32, '2025-01-28', 2, 1, 4, 'Retail', 2, 0.02),
+(33, '2025-04-09', 4, 4, 2, 'Wholesale', 9, 0.08),
+(34, '2025-05-08', 2, 4, 1, 'Wholesale', 18, 0.0),
+(35, '2025-02-17', 4, 2, 4, 'Wholesale', 7, 0.08),
+(36, '2025-01-31', 3, 4, 1, 'Retail', 5, 0.08),
+(37, '2025-05-27', 7, 4, 2, 'Wholesale', 7, 0.0),
+(38, '2025-10-24', 9, 1, 3, 'Wholesale', 19, 0.08),
+(39, '2025-09-15', 9, 2, 1, 'Retail', 2, 0.02),
+(40, '2025-02-05', 10, 1, 2, 'Wholesale', 19, 0.02),
+(41, '2025-10-24', 10, 1, 1, 'Wholesale', 19, 0.1),
+(42, '2025-09-25', 6, 3, 2, 'Retail', 6, 0.02),
+(43, '2025-05-16', 7, 2, 3, 'Wholesale', 25, 0.0),
+(44, '2025-01-05', 8, 1, 1, 'Wholesale', 17, 0.05),
+(45, '2025-03-09', 6, 1, 2, 'Wholesale', 6, 0.08),
+(46, '2025-10-06', 5, 1, 3, 'Retail', 2, 0.02),
+(47, '2025-05-16', 2, 1, 2, 'Wholesale', 20, 0.02),
+(48, '2025-06-25', 4, 3, 4, 'Wholesale', 2, 0.0),
+(49, '2025-11-21', 7, 3, 1, 'Wholesale', 25, 0.02),
+(50, '2025-11-23', 5, 2, 4, 'Retail', 7, 0.1),
+(51, '2025-01-05', 2, 1, 2, 'Wholesale', 12, 0.1),
+(52, '2025-10-10', 3, 4, 2, 'Wholesale', 12, 0.0),
+(53, '2025-07-03', 4, 2, 1, 'Wholesale', 18, 0.08),
+(54, '2025-11-14', 3, 2, 2, 'Retail', 3, 0.08),
+(55, '2025-01-13', 3, 3, 4, 'Retail', 4, 0.05),
+(56, '2025-03-23', 2, 4, 1, 'Retail', 4, 0.02),
+(57, '2025-08-24', 6, 3, 2, 'Wholesale', 22, 0.02),
+(58, '2025-07-24', 6, 3, 1, 'Retail', 5, 0.05),
+(59, '2025-11-25', 9, 4, 3, 'Retail', 2, 0.05),
+(60, '2025-04-02', 10, 3, 1, 'Wholesale', 14, 0.05),
+(61, '2025-06-10', 7, 1, 4, 'Retail', 4, 0.05),
+(62, '2025-01-23', 7, 1, 2, 'Wholesale', 3, 0.12),
+(63, '2025-06-19', 10, 3, 1, 'Retail', 5, 0.1),
+(64, '2025-06-08', 7, 3, 4, 'Retail', 3, 0.02),
+(65, '2025-08-04', 7, 2, 3, 'Wholesale', 1, 0.05),
+(66, '2025-05-27', 4, 4, 3, 'Wholesale', 15, 0.12),
+(67, '2025-04-20', 9, 4, 2, 'Retail', 5, 0.1),
+(68, '2025-12-06', 10, 3, 1, 'Retail', 4, 0.12),
+(69, '2025-06-08', 4, 2, 2, 'Wholesale', 8, 0.08),
+(70, '2025-11-09', 2, 4, 4, 'Retail', 4, 0.12),
+(71, '2025-12-23', 7, 4, 4, 'Wholesale', 21, 0.12),
+(72, '2025-01-03', 2, 4, 2, 'Wholesale', 23, 0.1),
+(73, '2025-08-26', 1, 2, 1, 'Wholesale', 15, 0.12),
+(74, '2025-09-29', 9, 3, 4, 'Retail', 7, 0.1),
+(75, '2025-08-17', 3, 4, 4, 'Wholesale', 8, 0.12),
+(76, '2025-05-22', 9, 4, 2, 'Wholesale', 3, 0.12),
+(77, '2025-05-27', 4, 3, 3, 'Wholesale', 18, 0.0),
+(78, '2025-03-12', 3, 2, 4, 'Retail', 4, 0.0),
+(79, '2025-08-01', 7, 3, 4, 'Wholesale', 7, 0.08),
+(80, '2025-07-19', 10, 1, 4, 'Wholesale', 12, 0.05);
+
+select * from sales;
+
+select sale_id , sale_date , quantity from sales;
+
+select * from sales where quantity >= 10;
+
+select * from sales where sales_channel = 'Retail'and quantity > 10 ;
+
+select * from sales where (sales_channel = 'Retail') and (quantity between 5 and 10);

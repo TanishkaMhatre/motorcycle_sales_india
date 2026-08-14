@@ -1,0 +1,5 @@
+payment_id,payment_method,fee_rate
+1,Credit Card,0.02
+2,UPI,0.005
+3,Cash,0.0
+4,Bank Transfer,0.01
