@@ -161,3 +161,14 @@ select * from products where product_name like '%Pad%';
 select * from sales order by quantity desc;
 
 select * from sales order by quantity desc limit 5;
+
+select count(sale_id) from sales ;
+
+select sum(quantity) from sales ;
+
+select avg(quantity) from sales;
+
+select min(quantity), max(quantity) from sales;
+
+select sum(quantity), avg(quantity), min(quantity), max(quantity) from sales;
+
