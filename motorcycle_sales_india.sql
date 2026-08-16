@@ -151,3 +151,13 @@ select * from sales where quantity >= 10;
 select * from sales where sales_channel = 'Retail'and quantity > 10 ;
 
 select * from sales where (sales_channel = 'Retail') and (quantity between 5 and 10);
+
+select * from sales where payment_id in (1, 2);
+
+select * from sales where payment_id not in (1, 2);
+
+select * from products where product_name like '%Pad%';
+
+select * from sales order by quantity desc;
+
+select * from sales order by quantity desc limit 5;
