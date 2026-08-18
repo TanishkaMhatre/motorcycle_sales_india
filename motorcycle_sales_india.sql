@@ -172,3 +172,22 @@ select min(quantity), max(quantity) from sales;
 
 select sum(quantity), avg(quantity), min(quantity), max(quantity) from sales;
 
+select sales_channel , count(*) from sales group by sales_channel;
+
+select sales_channel, sum(quantity) from sales group by sales_channel;
+
+select sales_channel, avg(quantity) from sales group by sales_channel;
+
+select sales_channel , max(quantity) from sales group by sales_channel;
+
+select sales_channel , min(quantity) from sales group by sales_channel;
+
+select sales_channel, count(quantity),sum(quantity),avg(quantity), min(quantity), max(quantity) from sales group by sales_channel;
+
+select sales_channel from sales group by sales_channel having sum(quantity )> 200;
+
+
+
+
+
+
