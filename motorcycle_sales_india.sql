@@ -186,8 +186,30 @@ select sales_channel, count(quantity),sum(quantity),avg(quantity), min(quantity)
 
 select sales_channel from sales group by sales_channel having sum(quantity )> 200;
 
+select distinct payment_id from sales;
 
+select distinct product_id from sales;
 
+select quantity,
+case 
+    when quantity >=15 then 'Large Order'
+    else 'Small Order'
+end  as order_size
+from sales;  
 
+select quantity,
+case 
+	when quantity >=20 then 'Very Large'
+    when quantity >=10 then 'Large'
+    else 'Small'
+end 
+from sales; 
 
-
+select discount_rate , 
+case
+	when discount_rate=0 then 'No Discount'
+    when discount_rate<= 0.05 then 'Low Discount'
+    when discount_rate > 0.05 then 'High Discount'
+end 
+from sales;   
+    
