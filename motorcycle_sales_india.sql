@@ -213,3 +213,28 @@ case
 end 
 from sales;   
     
+select distinct payment_method from payment_methods;
+
+select pm.payment_method , pm.payment_id , s.payment_id
+from payment_methods pm inner join sales s
+on pm.payment_id = s.payment_id;
+
+select p.product_id, p.product_name , s.quantity 
+from products p inner join sales s
+on p.product_id = s.product_id;
+
+select p.product_id, p.product_name , s.quantity 
+from products p left join sales s
+on p.product_id = s.product_id;
+
+
+select p.product_id , p.product_name , s.quantity
+from products p right join sales s
+on p.product_id = s.product_id
+where s.quantity > 15 ;
+
+
+select p.product_id, p.product_name , s.sale_date , s.sales_channel
+from products p right join sales s
+on p.product_id = s.product_id
+where s.sales_channel= 'Retail'  ;
