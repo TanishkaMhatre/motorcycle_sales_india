@@ -170,6 +170,7 @@ select avg(quantity) from sales;
 
 select min(quantity), max(quantity) from sales;
 
+
 select sum(quantity), avg(quantity), min(quantity), max(quantity) from sales;
 
 select sales_channel , count(*) from sales group by sales_channel;
@@ -238,3 +239,30 @@ select p.product_id, p.product_name , s.sale_date , s.sales_channel
 from products p right join sales s
 on p.product_id = s.product_id
 where s.sales_channel= 'Retail'  ;
+
+select product_name, unit_price from products;
+
+select sale_id , quantity from sales where quantity > 15;
+
+select * from sales order by quantity desc limit 5;
+
+select sales_channel , sum(quantity) from sales group by sales_channel;
+
+select p.product_name , s.quantity
+from products p inner join sales s
+on p.product_id = s.product_id;
+
+select p.product_name , s.quantity
+from products p inner join sales s
+on p.product_id = s.product_id
+where s.quantity >15;
+
+select p.product_name , sum(s.quantity)
+from products p inner join sales s
+on p.product_id = s.product_id
+group by p.product_name;
+
+select p.product_name , count(s.sale_id)
+from products p inner join sales s
+on p.product_id = s.product_id
+group by p.product_name;
